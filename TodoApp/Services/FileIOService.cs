@@ -8,6 +8,11 @@ namespace TodoApp.Services;
 public class FileIOService
 {
     private readonly string PATH;
+
+    public FileIOService(string path)
+    {
+        PATH = path;
+    }
     public BindingList<TodoModel> LoadData()
     {
         var fileExists = File.Exists(PATH);
@@ -24,7 +29,7 @@ public class FileIOService
         }
     }
 
-    public void SaveData(BindingList<TodoModel> todoDataList)
+    public void SaveData(object todoDataList)
     {
         using (StreamWriter writer = File.CreateText(PATH))
         {
